@@ -1,0 +1,5 @@
+node_modules
+*.py
+screenshot*.png
+hostinger-embed.html
+mobile look.html

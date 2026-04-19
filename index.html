@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Plus Vitres — Lavage professionnel de vitres et gouttières</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"DM Sans"', 'sans-serif'] },
+          colors: {
+            primary:       '#1e5fe8',
+            'primary-dark':'#1449cc',
+            'primary-light':'#dde9ff',
+            meteorite:     '#4d86f5',
+            'met-dark':    '#0f2358',
+            'met-dark-2':  '#081135',
+            'met-light':   '#b5ceff',
+            success:       '#00b090',
+            'success-dark':'#008361',
+            'success-light':'#def4f0',
+            danger:        '#fc5185',
+            dark:          '#1d1e20',
+            'gray-soft':   '#727586',
+            border:        '#dadce0',
+            'gray-light':  '#f2f3f6',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-primary-dark: #1449cc;
+      --color-primary: #1e5fe8;
+      --color-primary-light: #dde9ff;
+      --color-meteorite-dark: #0f2358;
+      --color-meteorite-dark-2: #081135;
+      --color-meteorite: #4d86f5;
+      --color-meteorite-light: #b5ceff;
+      --color-success-dark: #008361;
+      --color-success: #00b090;
+      --color-success-light: #def4f0;
+      --color-danger: #fc5185;
+      --color-warning: #ffcd35;
+      --color-dark: #1d1e20;
+      --color-gray: #727586;
+      --color-gray-border: #dadce0;
+      --color-gray-light: #f2f3f6;
+      --color-light: #fff;
+      --dp-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--color-dark);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Gradient text ── */
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-meteorite) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Button primary ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: 600; font-size: 0.9rem;
+      padding: 12px 28px;
+      border-radius: 100px;
+      border: none; cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--color-primary-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(30,95,232,.35); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--color-primary);
+      font-weight: 600; font-size: 0.9rem;
+      padding: 11px 27px;
+      border-radius: 100px;
+      border: 2px solid var(--color-primary);
+      cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { background: var(--color-primary-light); }
+
+    /* ── Nav ── */
+    .nav-link {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color .15s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: #fff;
+      border-radius: 2px;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .2s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-link:hover { color: #fff; }
+
+    /* ── Section badge ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px;
+    }
+    .badge-success {
+      background: var(--color-success-light);
+      color: var(--color-success-dark);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--color-gray-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(30,95,232,.12); }
+
+    /* ── Service icon box ── */
+    .icon-box {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--color-primary-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Fade-up ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    .d1 { animation-delay: .1s; }
+    .d2 { animation-delay: .22s; }
+    .d3 { animation-delay: .36s; }
+    .d4 { animation-delay: .5s; }
+
+    /* ── Hero gradient bg ── */
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 40%, var(--color-primary) 100%);
+    }
+
+    /* ── Hero with real photo ── */
+    .hero-photo {
+      background-image: linear-gradient(135deg, rgba(8,17,53,.82) 0%, rgba(20,73,204,.72) 100%), url('vitres_4.jpg');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    /* ── Divider line ── */
+    .section-sep { border-top: 1px solid var(--color-gray-border); }
+
+    /* ── Stats card ── */
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    /* ── Image overlay card ── */
+    .img-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .img-card:hover img { transform: scale(1.04); }
+
+    /* ── Vitres 3-photo responsive grid ── */
+    .vitres-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 150px;
+      grid-template-areas:
+        "main main"
+        "sec  third";
+    }
+    .vitres-grid .vi-main  { grid-area: main; }
+    .vitres-grid .vi-sec   { grid-area: sec; }
+    .vitres-grid .vi-third { grid-area: third; }
+    @media (min-width: 768px) {
+      .vitres-grid {
+        gap: 16px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px;
+        grid-template-areas:
+          "main sec"
+          "main third";
+        height: 420px;
+      }
+    }
+
+    /* ── Nav backdrop ── */
+    #navbar {
+      transition: background .3s ease, box-shadow .3s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(8,17,53,.96) !important;
+      box-shadow: 0 2px 24px rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ── Feature checklist ── */
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--color-dark);
+      line-height: 1.5;
+    }
+    .check-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      background: var(--color-success-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* ── FAQ Accordion ── */
+    .faq-lang-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      border: 1.5px solid var(--color-gray-border);
+      background: transparent;
+      color: var(--color-gray);
+      cursor: pointer;
+      transition: all .15s ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .faq-lang-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+    .faq-lang-btn:not(.active):hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .faq-item {
+      border: 1.5px solid var(--color-gray-border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      transition: border-color .2s ease;
+      margin-bottom: 10px;
+    }
+    .faq-item:hover { border-color: var(--color-primary-light); }
+    .faq-item.open  { border-color: var(--color-primary); }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-dark);
+      line-height: 1.4;
+    }
+    .faq-question:hover { color: var(--color-primary); }
+    .faq-item.open .faq-question { color: var(--color-primary); }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      color: var(--color-gray);
+      transition: transform .25s ease, color .15s ease;
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--color-primary);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    .faq-answer-inner {
+      padding: 16px 24px 22px;
+      font-size: 0.9rem;
+      color: var(--color-gray);
+      line-height: 1.75;
+      border-top: 1px solid var(--color-gray-border);
+    }
+
+    /* ── Footer gradient ── */
+    footer {
+      background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 100%);
+    }
+
+    /* ═══════════════════════════════════════════
+       TAILWIND FALLBACKS — layout works even when
+       Tailwind CDN cannot load (file:// protocol,
+       no internet, etc.)
+       ═══════════════════════════════════════════ */
+    .hidden          { display: none !important; }
+    .block           { display: block; }
+    .flex            { display: flex; }
+    .inline-flex     { display: inline-flex; }
+    .grid            { display: grid; }
+    .relative        { position: relative; }
+    .absolute        { position: absolute; }
+    .fixed           { position: fixed; }
+    .top-0           { top: 0; }
+    .bottom-0        { bottom: 0; }
+    .bottom-8        { bottom: 2rem; }
+    .left-0          { left: 0; }
+    .right-0         { right: 0; }
+    .left-1\/4       { left: 25%; }
+    .left-1\/3       { left: 33.333%; }
+    .left-1\/2       { left: 50%; }
+    .right-1\/4      { right: 25%; }
+    .top-20          { top: 5rem; }
+    .bottom-20       { bottom: 5rem; }
+    .inset-0         { top: 0; right: 0; bottom: 0; left: 0; }
+    .-translate-x-1\/2 { transform: translateX(-50%); }
+    .z-10            { z-index: 10; }
+    .z-50            { z-index: 50; }
+    .flex-col        { flex-direction: column; }
+    .flex-wrap       { flex-wrap: wrap; }
+    .flex-1          { flex: 1 1 0%; }
+    .flex-shrink-0   { flex-shrink: 0; }
+    .items-center    { align-items: center; }
+    .items-start     { align-items: flex-start; }
+    .items-end       { align-items: flex-end; }
+    .justify-center  { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .self-start      { align-self: flex-start; }
+    .overflow-hidden { overflow: hidden; }
+    .text-center     { text-align: center; }
+    .text-right      { text-align: right; }
+    .uppercase       { text-transform: uppercase; }
+    .text-white           { color: #fff !important; }
+    .text-white\/60       { color: rgba(255,255,255,.6) !important; }
+    .text-white\/55       { color: rgba(255,255,255,.55) !important; }
+    .text-white\/50       { color: rgba(255,255,255,.5) !important; }
+    .text-white\/40       { color: rgba(255,255,255,.4) !important; }
+    .text-white\/30       { color: rgba(255,255,255,.3) !important; }
+    .text-white\/20       { color: rgba(255,255,255,.2) !important; }
+    .text-dark            { color: #1d1e20 !important; }
+    .text-gray-soft       { color: #727586 !important; }
+    .text-meteorite-light { color: #b5ceff !important; }
+    .text-meteorite       { color: var(--color-meteorite) !important; }
+    .font-black      { font-weight: 900; }
+    .font-bold       { font-weight: 700; }
+    .font-semibold   { font-weight: 600; }
+    .font-medium     { font-weight: 500; }
+    .text-xs   { font-size: .75rem;   line-height: 1rem; }
+    .text-sm   { font-size: .875rem;  line-height: 1.25rem; }
+    .text-base { font-size: 1rem;     line-height: 1.5rem; }
+    .text-lg   { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-2xl  { font-size: 1.5rem;   line-height: 2rem; }
+    .leading-tight   { line-height: 1.25; }
+    .leading-relaxed { line-height: 1.625; }
+    .tracking-tight  { letter-spacing: -.025em; }
+    .tracking-wider  { letter-spacing: .05em; }
+    .w-full  { width: 100%; }
+    .h-full  { height: 100%; }
+    .w-px    { width: 1px; }
+    .h-px    { height: 1px; }
+    .w-9     { width: 2.25rem; }
+    .h-9     { height: 2.25rem; }
+    .w-10    { width: 2.5rem; }
+    .h-10    { height: 2.5rem; }
+    .w-16    { width: 4rem; }
+    .h-16    { height: 4rem; }
+    .w-80    { width: 20rem; }
+    .w-96    { width: 24rem; }
+    .h-80    { height: 20rem; }
+    .h-96    { height: 24rem; }
+    .min-h-screen { min-height: 100vh; }
+    .max-w-sm  { max-width: 24rem; }
+    .max-w-lg  { max-width: 32rem; }
+    .max-w-xl  { max-width: 36rem; }
+    .max-w-2xl { max-width: 42rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-6xl { max-width: 72rem; }
+    .object-cover { object-fit: cover; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-2xl  { border-radius: 1rem; }
+    .border       { border-width: 1px; border-style: solid; }
+    .shadow-lg    { box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05); }
+    .bg-white     { background-color: #fff !important; }
+    .opacity-10   { opacity: .1; }
+    .opacity-30   { opacity: .3; }
+    .opacity-70   { opacity: .7; }
+    .transition-colors { transition: color .15s ease, background-color .15s ease; }
+    .grid-cols-3  { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    /* Spacing */
+    .gap-2 { gap: .5rem; }   .gap-3  { gap: .75rem; }  .gap-4  { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; } .gap-6  { gap: 1.5rem; }  .gap-7  { gap: 1.75rem; }
+    .gap-8 { gap: 2rem; }    .gap-12 { gap: 3rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .ml-2  { margin-left: .5rem; }
+    .mt-1  { margin-top: .25rem; }  .mt-2  { margin-top: .5rem; }
+    .mt-4  { margin-top: 1rem; }    .mt-6  { margin-top: 1.5rem; }
+    .mt-10 { margin-top: 2.5rem; }  .mt-12 { margin-top: 3rem; }
+    .mt-14 { margin-top: 3.5rem; }
+    .mb-1  { margin-bottom: .25rem; } .mb-2  { margin-bottom: .5rem; }
+    .mb-4  { margin-bottom: 1rem; }   .mb-5  { margin-bottom: 1.25rem; }
+    .mb-6  { margin-bottom: 1.5rem; } .mb-8  { margin-bottom: 2rem; }
+    .mb-10 { margin-bottom: 2.5rem; } .mb-12 { margin-bottom: 3rem; }
+    .mb-14 { margin-bottom: 3.5rem; }
+    .p-1   { padding: .25rem; }  .p-3   { padding: .75rem; }
+    .p-4   { padding: 1rem; }    .p-7   { padding: 1.75rem; }
+    .px-6  { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-1  { padding-top: .25rem;  padding-bottom: .25rem; }
+    .py-10 { padding-top: 2.5rem;  padding-bottom: 2.5rem; }
+    .py-16 { padding-top: 4rem;    padding-bottom: 4rem; }
+    .py-20 { padding-top: 5rem;    padding-bottom: 5rem; }
+    .py-24 { padding-top: 6rem;    padding-bottom: 6rem; }
+    .pt-24 { padding-top: 6rem; }  .pt-28 { padding-top: 7rem; }
+    .pb-4  { padding-bottom: 1rem; }   .pb-5  { padding-bottom: 1.25rem; }
+    .pb-16 { padding-bottom: 4rem; }   .pb-20 { padding-bottom: 5rem; }
+    .pr-5  { padding-right: 1.25rem; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+    .animate-pulse { animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite; }
+    /* Responsive */
+    @media (min-width: 640px) {
+      .sm\:flex        { display: flex !important; }
+      .sm\:inline-flex { display: inline-flex !important; }
+      .sm\:block       { display: block !important; }
+      .sm\:hidden      { display: none !important; }
+      .sm\:flex-row    { flex-direction: row !important; }
+      .sm\:items-center{ align-items: center !important; }
+      .sm\:grid-cols-2 { display: grid !important; grid-template-columns: repeat(2,1fr) !important; }
+      .sm\:gap-3       { gap: .75rem !important; }
+    }
+    @media (min-width: 768px) {
+      .md\:flex         { display: flex !important; }
+      .md\:inline-flex  { display: inline-flex !important; }
+      .md\:block        { display: block !important; }
+      .md\:hidden       { display: none !important; }
+      .md\:flex-row     { flex-direction: row !important; }
+      .md\:items-center { align-items: center !important; }
+      .md\:items-end    { align-items: flex-end !important; }
+      .md\:justify-between { justify-content: space-between !important; }
+      .md\:text-sm      { font-size: .875rem !important; }
+      .md\:pb-5         { padding-bottom: 1.25rem !important; }
+      .md\:pr-5         { padding-right: 1.25rem !important; }
+      .md\:gap-12       { gap: 3rem !important; }
+      .md\:grid-cols-2  { display: grid !important; grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+      .md\:grid-cols-3  { display: grid !important; grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+    }
+  </style>
+
+  <!-- FAQPage schema — Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quelles régions desservez-vous ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous offrons nos services de lavage de vitres et nettoyage de gouttières à Montréal et ses environs, incluant la Rive-Sud (Brossard, Longueuil, Boucherville), la Rive-Nord (Laval, Terrebonne, Blainville) ainsi que les Laurentides (Saint-Sauveur, Saint-Donat, Mont-Tremblant). Contactez-nous pour vérifier la disponibilité dans votre secteur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien coûte un lavage de vitres à Montréal ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chaque projet est unique, c'est pourquoi nous offrons une estimation gratuite et sans engagement. Le prix varie selon le nombre de fenêtres, le type de propriété (résidentiel ou commercial) et l'accessibilité. Contactez-nous au (438) 543-6395 ou remplissez notre formulaire en ligne pour obtenir votre soumission."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Utilisez-vous des produits écologiques ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui ! Nous utilisons exclusivement de l'eau déionisée (zéro minéraux résiduels) pour le nettoyage extérieur, ainsi que des produits écologiques et biodégradables pour le nettoyage intérieur. Résultat : des vitres impeccables sans impact négatif sur l'environnement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-ce que vous nettoyez aussi les cadres, rainures et moustiquaires ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. Notre service comprend le nettoyage complet des cadres, vitres et rainures. Nous nettoyons également les moustiquaires sur demande. Aucun détail n'est laissé de côté."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "À quelle fréquence devrais-je faire laver mes vitres ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous recommandons un lavage deux fois par année — idéalement au printemps après l'hiver et à l'automne avant les premières neiges. Pour les commerces ou immeubles avec beaucoup de passage, un entretien mensuel ou trimestriel est conseillé."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Offrez-vous aussi le nettoyage de gouttières ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui ! En plus du lavage de vitres, nous offrons le nettoyage complet de gouttières : déblocage intérieur, nettoyage extérieur visible et vérification de la circulation de l'eau. Nous recommandons un entretien au printemps et à l'automne."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Êtes-vous une entreprise assurée ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, notre équipe est entièrement assurée. Votre propriété et nos employés sont protégés lors de chaque intervention. Vous pouvez nous faire confiance pour un service professionnel et sécuritaire."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qui sont vos employés ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous sommes une équipe étudiante passionnée, alliant études et entrepreneuriat. Tous nos employés sont formés et supervisés pour garantir un résultat impeccable à chaque visite. Notre jeunesse et notre passion font notre force !"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We provide professional window cleaning and gutter cleaning services across Montreal and surrounding areas, including the South Shore (Brossard, Longueuil, Boucherville), the North Shore (Laval, Terrebonne, Blainville), and the Laurentians (Saint-Sauveur, Saint-Donat, Mont-Tremblant). Contact us to confirm availability in your area."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does window cleaning cost in Montreal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every project is unique, which is why we offer a free, no-obligation estimate. Pricing depends on the number of windows, property type (residential or commercial), and accessibility. Call us at (438) 543-6395 or fill out our online form to get your quote."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you use eco-friendly products?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We exclusively use deionized water (zero mineral residue) for exterior cleaning, along with eco-friendly and biodegradable products for interior cleaning. The result: spotless, streak-free windows with zero environmental impact."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you clean frames, tracks, and screens too?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. Our service includes thorough cleaning of frames, glass, and tracks. We also clean window screens upon request. No detail is overlooked."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should I get my windows cleaned?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We recommend washing your windows twice a year — ideally in the spring after winter and in the fall before the first snowfall. For businesses or high-traffic buildings, monthly or quarterly cleaning is advised."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you also offer gutter cleaning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! In addition to window washing, we offer complete gutter cleaning services: interior unclogging, visible exterior cleaning, and water flow verification. We recommend maintenance in both spring and fall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are you insured?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our team is fully insured. Your property and our employees are protected during every visit. You can trust us for a professional and safe service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who are your employees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We are a passionate student team, balancing studies and entrepreneurship. All our employees are trained and supervised to guarantee impeccable results on every visit. Our youth and dedication are our greatest strengths!"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 hero-gradient">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 flex-shrink-0">
+        <div class="flex items-center gap-1">
+          <span class="font-black text-white tracking-tight" style="font-size:1.25rem; letter-spacing:-.02em;">
+            A<span class="text-meteorite">+</span> VI
+          </span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <polygon points="10,2 18,14 2,14" fill="#4d86f5"/>
+          </svg>
+          <span class="font-black text-white tracking-tight" style="font-size:1.25rem; letter-spacing:-.02em;">RES</span>
+        </div>
+        <span class="text-meteorite-light text-xs font-medium opacity-70 hidden sm:block">et services</span>
+      </a>
+
+      <!-- Links -->
+      <ul class="hidden md:flex items-center gap-7">
+        <li><a href="#vitres" class="nav-link active">Vitres et gouttières</a></li>
+        <li><a href="#exterieures" class="nav-link">Surfaces extérieures</a></li>
+        <li><a href="#about" class="nav-link">À propos de nous</a></li>
+        <li><a href="contact.html" class="nav-link">Contactez-nous</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <a href="contact.html" class="btn-primary hidden sm:inline-flex" style="padding:10px 22px; font-size:.8rem;">
+        Estimation gratuite
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden text-white p-1" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col gap-3">
+      <a href="#vitres" class="nav-link py-1">Vitres et gouttières</a>
+      <a href="#exterieures" class="nav-link py-1">Surfaces extérieures</a>
+      <a href="#about" class="nav-link py-1">À propos de nous</a>
+      <a href="contact.html" class="nav-link py-1">Contactez-nous</a>
+      <a href="contact.html" class="btn-primary mt-2 self-start">Estimation gratuite</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero-gradient hero-photo relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-20 overflow-hidden">
+
+    <!-- Background orbs -->
+    <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full opacity-10" style="background: radial-gradient(circle, #4d86f5, transparent); filter: blur(60px);"></div>
+    <div class="absolute bottom-20 right-1/4 w-80 h-80 rounded-full opacity-10" style="background: radial-gradient(circle, #673de6, transparent); filter: blur(60px);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <div class="badge mb-6 fade-up" style="background:rgba(77,134,245,.2); color:#d5dfff;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#00b090;display:inline-block;"></span>
+        Service professionnel · Montréal &amp; région
+      </div>
+
+      <h1 class="font-black text-white leading-tight fade-up d1"
+          style="font-size: clamp(2.6rem, 6vw, 4.2rem); letter-spacing: -.03em; line-height: 1.08;">
+        Des vitres d'une<br/>
+        <span style="color:#4d86f5;">clarté</span> impeccable.
+      </h1>
+
+      <p class="text-white/60 mt-6 mb-10 text-base leading-relaxed max-w-xl mx-auto fade-up d2">
+        Nous redonnons leur éclat à vos fenêtres avec soin et précision.<br/>
+        Aucune trace ne sera laissée — cadres, vitres et rainures inclus.
+      </p>
+
+      <div class="flex gap-3 justify-center flex-wrap fade-up d3">
+        <a href="#vitres" class="btn-primary" style="background:#fff; color:var(--color-primary-dark);">
+          Estimation gratuite
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#about" class="btn-outline" style="border-color:rgba(255,255,255,.4); color:#fff;">
+          En savoir plus
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-10 sm:mt-14 fade-up d4 max-w-lg mx-auto">
+        <div class="stat-card">
+          <div class="text-white font-black text-2xl" style="letter-spacing:-.03em;">500+</div>
+          <div class="text-white/50 text-xs mt-1">Clients satisfaits</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-white font-black text-2xl" style="letter-spacing:-.03em;">10+</div>
+          <div class="text-white/50 text-xs mt-1">Ans d'expérience</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-white font-black text-2xl" style="letter-spacing:-.03em;">100%</div>
+          <div class="text-white/50 text-xs mt-1">Sans traces</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+      <span class="text-white text-xs">Défiler</span>
+      <div class="w-px h-10 bg-white animate-pulse"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ VITRES ═══════════════════ -->
+  <section id="vitres" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Title row -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <div class="badge mb-4">Lavage de vitres</div>
+          <h2 class="font-black" style="font-size: clamp(2rem, 4vw, 3rem); letter-spacing:-.03em; line-height:1.1;">
+            Lavage professionnel<br/>
+            <span class="text-gradient">des vitres</span>
+          </h2>
+        </div>
+        <p class="text-gray-soft text-sm leading-relaxed max-w-sm">
+          Afin de redonner leur éclat à vos fenêtres, nous effectuons notre travail avec savoir-faire et précision. Aucune trace ne sera laissée.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+
+        <!-- Left: features + CTA -->
+        <div>
+          <p class="text-gray-soft leading-relaxed mb-8">
+            Vos cadres et vos vitres se métamorphoseront pour obtenir un aspect se rapprochant le plus possible du neuf. Nous offrons le nettoyage extérieur à l'eau déionisée ainsi que le nettoyage intérieur à la main.
+          </p>
+
+          <div class="flex flex-col gap-4 mb-10">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Nettoyage extérieur à l'eau déionisée — zéro minéraux résiduels</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Nettoyage intérieur à la main, avec soin pour chaque surface</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Cadres, vitres et rainures — service complet sans compromis</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Résultat garanti impeccable — aspect proche du neuf</span>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn-primary">
+            Estimation gratuite
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Right: images (3 photos, responsive grid) -->
+        <div class="vitres-grid">
+          <div class="img-card vi-main" style="border-radius:16px;">
+            <img src="vitres_1.jpg" alt="Équipe au travail sur bâtiment en brique" style="object-position: center top;"/>
+          </div>
+          <div class="img-card vi-sec" style="border-radius:16px;">
+            <img src="vitres_2.jpg" alt="Lavage de grandes fenêtres en pierre" style="object-position: center 30%;"/>
+          </div>
+          <div class="img-card vi-third" style="border-radius:16px;">
+            <img src="vitres_4.jpg" alt="Nettoyage à l'eau déionisée avec vue sur Montréal" style="object-position: center center;"/>
+            <div class="absolute inset-0 flex items-end p-3" style="background:linear-gradient(0deg,rgba(8,17,53,.8),transparent);">
+              <span class="text-white font-bold text-xs md:text-sm" style="letter-spacing:-.01em;">Des vitres impeccables !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ POURQUOI NOUS ═══════════════════ -->
+  <section class="py-20 px-6" style="background: var(--color-gray-light);">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="badge badge-success mb-4 mx-auto">Notre mission</div>
+        <h2 class="font-black" style="font-size: clamp(1.8rem,4vw,2.8rem); letter-spacing:-.03em;">
+          Notre mission est d'offrir un soin complet<br/>
+          <span class="text-gradient">de vos fenêtres.</span>
+        </h2>
+        <p class="text-gray-soft text-sm mt-4 max-w-xl mx-auto">
+          Du cadre à la vitre, en passant par toutes les rainures — chaque détail compte.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5">
+
+        <div class="card p-7">
+          <div class="icon-box mb-5">
+            <svg width="24" height="24" fill="none" stroke="#673de6" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2" style="letter-spacing:-.02em;">Qualité garantie</h3>
+          <p class="text-gray-soft text-sm leading-relaxed">
+            Nous nous engageons à un résultat impeccable à chaque intervention, sans compromis sur la qualité.
+          </p>
+        </div>
+
+        <div class="card p-7" style="border-color: var(--color-primary); box-shadow: 0 0 0 1px var(--color-primary);">
+          <div class="icon-box mb-5" style="background: var(--color-primary); ">
+            <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2" style="letter-spacing:-.02em;">Ponctualité</h3>
+          <p class="text-gray-soft text-sm leading-relaxed">
+            Votre temps est précieux. Nous respectons chaque rendez-vous et travaillons efficacement pour minimiser les perturbations.
+          </p>
+        </div>
+
+        <div class="card p-7">
+          <div class="icon-box mb-5">
+            <svg width="24" height="24" fill="none" stroke="#673de6" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2" style="letter-spacing:-.02em;">Satisfaction client</h3>
+          <p class="text-gray-soft text-sm leading-relaxed">
+            Notre priorité absolue est votre satisfaction. Nous sommes fiers de fournir un service exceptionnel de l'estimation au service après-vente.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ GOUTTIÈRES ═══════════════════ -->
+  <section id="exterieures" class="py-24 px-6 bg-white section-sep">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: image -->
+        <div class="relative pb-5 pr-5 md:pb-5 md:pr-5">
+          <div class="img-card" style="height:320px; border-radius:24px;">
+            <img src="gouttieres_1.jpg" alt="Entretien professionnel des gouttières" style="object-position: center center;"/>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute bottom-0 right-0 bg-white rounded-2xl shadow-lg p-3 flex items-center gap-3 border" style="border-color:var(--color-gray-border);">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--color-success-light);">
+              <svg width="16" height="16" fill="none" stroke="#008361" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm">Gouttières protégées</div>
+              <div class="text-gray-soft text-xs">Aucun blocage garanti</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: content -->
+        <div>
+          <div class="badge mb-5">Gouttières</div>
+          <h2 class="font-black mb-6" style="font-size: clamp(1.8rem,4vw,2.8rem); letter-spacing:-.03em; line-height:1.1;">
+            Entretien professionnel<br/>
+            <span class="text-gradient">des gouttières</span>
+          </h2>
+          <p class="text-gray-soft leading-relaxed mb-8">
+            Que ce soit d'assurer leur bon fonctionnement en faisant en sorte que rien ne bloque la circulation de l'eau, ou d'un point de vue plus esthétique, en nettoyant la partie extérieure visible, notre équipe est toute équipée pour entretenir vos gouttières.
+          </p>
+
+          <div class="flex flex-col gap-4 mb-10">
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Déblocage et nettoyage complet de l'intérieur des gouttières</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Nettoyage extérieur visible pour une apparence soignée</span>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#008361" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span>Vérification de la circulation de l'eau et des descentes</span>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn-primary" style="background: var(--color-success-dark);">
+            Estimation gratuite — gouttières
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ POURQUOI NOUS CHOISIR ═══════════════════ -->
+  <section id="about" class="py-24 px-6 section-sep" style="background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 100%);">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <div class="badge mb-5 mx-auto" style="background:rgba(77,134,245,.18); color:#d5dfff;">
+          Notre entreprise
+        </div>
+        <h2 class="font-black text-white mb-4" style="font-size: clamp(2rem,5vw,3.4rem); letter-spacing:-.03em; line-height:1.1;">
+          Pourquoi nous choisir ?
+        </h2>
+        <p class="text-white/60 text-base max-w-xl mx-auto leading-relaxed mb-6">
+          Notre entreprise accorde une grande importance à offrir un service de qualité, de l'estimation au service après vente. Notre engagement envers le service et la qualité est notre priorité absolue.
+        </p>
+        <!-- Student team mention -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style="background:rgba(255,205,53,.12); border:1px solid rgba(255,205,53,.25); color:#ffcd35;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+          </svg>
+          Une équipe étudiante passionnée — alliant études et entrepreneuriat
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-14">
+
+        <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px;">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="icon-box" style="background:rgba(77,134,245,.2);">
+              <svg width="22" height="22" fill="none" stroke="#d5dfff" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-bold text-lg" style="letter-spacing:-.02em;">Expérience &amp; expertise</h3>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Plus de 10 ans d'expérience dans le lavage de vitres résidentiel et commercial. Notre équipe maîtrise chaque technique pour un résultat optimal.
+          </p>
+        </div>
+
+        <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px;">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="icon-box" style="background:rgba(0,176,144,.15);">
+              <svg width="22" height="22" fill="none" stroke="#00b090" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-bold text-lg" style="letter-spacing:-.02em;">Service après-vente</h3>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Nous sommes disponibles pour assurer votre satisfaction bien après l'intervention. Un résultat qui ne vous satisfait pas ? Nous revenons.
+          </p>
+        </div>
+
+        <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px;">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="icon-box" style="background:rgba(255,205,53,.15);">
+              <svg width="22" height="22" fill="none" stroke="#ffcd35" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-bold text-lg" style="letter-spacing:-.02em;">Tarifs transparents</h3>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Estimation gratuite et sans engagement. Nos prix sont clairs et fixes — aucune mauvaise surprise lors de la facturation.
+          </p>
+        </div>
+
+        <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px;">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="icon-box" style="background:rgba(77,134,245,.2);">
+              <svg width="22" height="22" fill="none" stroke="#d5dfff" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-white font-bold text-lg" style="letter-spacing:-.02em;">Produits écologiques</h3>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed">
+            Nous utilisons des produits respectueux de l'environnement et de l'eau déionisée pour un nettoyage efficace sans impact négatif.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FAQ ═══════════════════ -->
+  <section id="faq" class="py-24 px-6 section-sep" style="background: var(--color-gray-light);">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <div class="badge mb-5 mx-auto">FAQ</div>
+        <h2 class="font-black mb-4" style="font-size: clamp(2rem,5vw,3.2rem); letter-spacing:-.03em; line-height:1.1;">
+          Questions fréquentes
+        </h2>
+        <p class="text-gray-soft text-base leading-relaxed mb-8">
+          Tout ce que vous devez savoir avant de nous contacter.<br/>
+          <span class="text-sm">Everything you need to know before reaching out.</span>
+        </p>
+        <!-- Language toggle -->
+        <div class="flex items-center justify-center gap-2">
+          <button id="btn-fr" class="faq-lang-btn active" onclick="switchFaqLang('fr')">FR — Français</button>
+          <button id="btn-en" class="faq-lang-btn" onclick="switchFaqLang('en')">EN — English</button>
+        </div>
+      </div>
+
+      <!-- ── French Questions ── -->
+      <div id="faq-fr">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Quelles régions desservez-vous ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nous offrons nos services de lavage de vitres et nettoyage de gouttières à Montréal et ses environs, incluant la Rive-Sud (Brossard, Longueuil, Boucherville), la Rive-Nord (Laval, Terrebonne, Blainville) ainsi que les Laurentides (Saint-Sauveur, Saint-Donat, Mont-Tremblant). Contactez-nous pour vérifier la disponibilité dans votre secteur.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Combien coûte un lavage de vitres à Montréal ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Chaque projet est unique, c'est pourquoi nous offrons une estimation gratuite et sans engagement. Le prix varie selon le nombre de fenêtres, le type de propriété (résidentiel ou commercial) et l'accessibilité. Contactez-nous au (438) 543-6395 ou remplissez notre formulaire en ligne pour obtenir votre soumission.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Utilisez-vous des produits écologiques ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Oui ! Nous utilisons exclusivement de l'eau déionisée (zéro minéraux résiduels) pour le nettoyage extérieur, ainsi que des produits écologiques et biodégradables pour le nettoyage intérieur. Résultat : des vitres impeccables sans impact négatif sur l'environnement.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Est-ce que vous nettoyez aussi les cadres, rainures et moustiquaires ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Absolument. Notre service comprend le nettoyage complet des cadres, vitres et rainures. Nous nettoyons également les moustiquaires sur demande. Aucun détail n'est laissé de côté.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            À quelle fréquence devrais-je faire laver mes vitres ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nous recommandons un lavage deux fois par année — idéalement au printemps après l'hiver et à l'automne avant les premières neiges. Pour les commerces ou immeubles avec beaucoup de passage, un entretien mensuel ou trimestriel est conseillé.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Offrez-vous aussi le nettoyage de gouttières ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Oui ! En plus du lavage de vitres, nous offrons le nettoyage complet de gouttières : déblocage intérieur, nettoyage extérieur visible et vérification de la circulation de l'eau. Nous recommandons un entretien au printemps et à l'automne.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Êtes-vous une entreprise assurée ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Oui, notre équipe est entièrement assurée. Votre propriété et nos employés sont protégés lors de chaque intervention. Vous pouvez nous faire confiance pour un service professionnel et sécuritaire.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Qui sont vos employés ?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nous sommes une équipe étudiante passionnée, alliant études et entrepreneuriat. Tous nos employés sont formés et supervisés pour garantir un résultat impeccable à chaque visite. Notre jeunesse et notre passion font notre force !</div></div>
+        </div>
+
+      </div><!-- /#faq-fr -->
+
+      <!-- ── English Questions ── -->
+      <div id="faq-en" style="display:none;">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What areas do you serve?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We provide professional window cleaning and gutter cleaning services across Montreal and surrounding areas, including the South Shore (Brossard, Longueuil, Boucherville), the North Shore (Laval, Terrebonne, Blainville), and the Laurentians (Saint-Sauveur, Saint-Donat, Mont-Tremblant). Contact us to confirm availability in your area.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How much does window cleaning cost in Montreal?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Every project is unique, which is why we offer a free, no-obligation estimate. Pricing depends on the number of windows, property type (residential or commercial), and accessibility. Call us at (438) 543-6395 or fill out our online form to get your quote.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you use eco-friendly products?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! We exclusively use deionized water (zero mineral residue) for exterior cleaning, along with eco-friendly and biodegradable products for interior cleaning. The result: spotless, streak-free windows with zero environmental impact.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you clean frames, tracks, and screens too?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Absolutely. Our service includes thorough cleaning of frames, glass, and tracks. We also clean window screens upon request. No detail is overlooked.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How often should I get my windows cleaned?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We recommend washing your windows twice a year — ideally in the spring after winter and in the fall before the first snowfall. For businesses or high-traffic buildings, monthly or quarterly cleaning is advised.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you also offer gutter cleaning?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! In addition to window washing, we offer complete gutter cleaning services: interior unclogging, visible exterior cleaning, and water flow verification. We recommend maintenance in both spring and fall.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Are you insured?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes, our team is fully insured. Your property and our employees are protected during every visit. You can trust us for a professional and safe service.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Who are your employees?
+            <svg class="faq-chevron" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">We are a passionate student team, balancing studies and entrepreneurship. All our employees are trained and supervised to guarantee impeccable results on every visit. Our youth and dedication are our greatest strengths!</div></div>
+        </div>
+
+      </div><!-- /#faq-en -->
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA CONTACT ═══════════════════ -->
+  <section id="contact" class="py-24 px-6 bg-white section-sep">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="badge mb-6 mx-auto">Prêt à commencer ?</div>
+      <h2 class="font-black mb-4" style="font-size: clamp(2rem,5vw,3.2rem); letter-spacing:-.03em; line-height:1.1;">
+        Contactez-nous<br/>
+        <span class="text-gradient">dès aujourd'hui !</span>
+      </h2>
+      <p class="text-gray-soft mb-10 text-base leading-relaxed">
+        Demandez une estimation gratuite. Nous vous répondons rapidement et planifions votre intervention selon vos disponibilités.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+14385436395" class="btn-primary text-base" style="padding:14px 36px;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          (438) 543-6395
+        </a>
+        <a href="contact.html" class="btn-outline text-base" style="padding:12px 36px;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Formulaire de contact
+        </a>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="flex items-center justify-center gap-6 mt-12 text-gray-soft text-sm flex-wrap">
+        <span class="flex items-center gap-2">
+          <svg width="16" height="16" fill="#00b090" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Estimation gratuite
+        </span>
+        <span class="flex items-center gap-2">
+          <svg width="16" height="16" fill="#00b090" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Sans engagement
+        </span>
+        <span class="flex items-center gap-2">
+          <svg width="16" height="16" fill="#00b090" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Réponse rapide
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="py-10 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <span class="font-black text-white" style="font-size:1.1rem; letter-spacing:-.02em;">
+          A<span style="color:#4d86f5;">+</span> VI
+        </span>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+          <polygon points="10,2 18,14 2,14" fill="#4d86f5"/>
+        </svg>
+        <span class="font-black text-white" style="font-size:1.1rem; letter-spacing:-.02em;">RES</span>
+        <span class="text-white/30 text-xs ml-2">et services</span>
+      </div>
+
+      <!-- Nav -->
+      <ul class="flex flex-wrap justify-center gap-6">
+        <li><a href="#vitres" class="text-white/40 text-xs hover:text-white/70 transition-colors">Vitres et gouttières</a></li>
+        <li><a href="#exterieures" class="text-white/40 text-xs hover:text-white/70 transition-colors">Surfaces extérieures</a></li>
+        <li><a href="#about" class="text-white/40 text-xs hover:text-white/70 transition-colors">À propos</a></li>
+        <li><a href="contact.html" class="text-white/40 text-xs hover:text-white/70 transition-colors">Contactez-nous</a></li>
+      </ul>
+
+      <!-- Copyright -->
+      <span class="text-white/30 text-xs">© 2025 A Plus Vitres. Tous droits réservés.</span>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+  <script>
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all open items in the same language panel
+      btn.closest('[id^="faq-"]').querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // FAQ language switch
+    function switchFaqLang(lang) {
+      document.getElementById('faq-fr').style.display = lang === 'fr' ? '' : 'none';
+      document.getElementById('faq-en').style.display = lang === 'en' ? '' : 'none';
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+</body>
+</html>

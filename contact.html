@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contactez-nous — A Plus Vitres</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"DM Sans"', 'sans-serif'] },
+          colors: {
+            primary:        '#1e5fe8',
+            'primary-dark': '#1449cc',
+            'primary-light':'#dde9ff',
+            meteorite:      '#4d86f5',
+            'met-dark':     '#0f2358',
+            'met-dark-2':   '#081135',
+            'met-light':    '#b5ceff',
+            success:        '#00b090',
+            'success-dark': '#008361',
+            'success-light':'#def4f0',
+            dark:           '#1d1e20',
+            'gray-soft':    '#727586',
+            border:         '#dadce0',
+            'gray-light':   '#f2f3f6',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --color-primary-dark: #1449cc;
+      --color-primary: #1e5fe8;
+      --color-primary-light: #dde9ff;
+      --color-meteorite-dark: #0f2358;
+      --color-meteorite-dark-2: #081135;
+      --color-meteorite: #4d86f5;
+      --color-meteorite-light: #b5ceff;
+      --color-success-dark: #008361;
+      --color-success: #00b090;
+      --color-success-light: #def4f0;
+      --color-dark: #1d1e20;
+      --color-gray: #727586;
+      --color-gray-border: #dadce0;
+      --color-gray-light: #f2f3f6;
+      --color-light: #fff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--color-dark);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-meteorite) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 40%, var(--color-primary) 100%);
+    }
+
+    /* ── Nav ── */
+    .nav-link {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color .15s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: #fff;
+      border-radius: 2px;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .2s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-link:hover { color: #fff; }
+
+    #navbar { transition: background .3s ease, box-shadow .3s ease; }
+    #navbar.scrolled {
+      background: rgba(8,17,53,.96) !important;
+      box-shadow: 0 2px 24px rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 100%);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    #mobile-menu a {
+      display: block;
+      padding: 12px 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+    }
+    #mobile-menu a:last-of-type { border-bottom: none; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: 600; font-size: 0.9rem;
+      padding: 13px 28px; border-radius: 100px;
+      min-height: 44px;
+      border: none; cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-primary:hover { background: var(--color-primary-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(30,95,232,.35); }
+    .btn-primary:active { transform: translateY(0); opacity: .85; }
+
+    /* ── Form elements ── */
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 6px;
+    }
+    .form-label .req {
+      color: var(--color-primary);
+      margin-left: 2px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 13px 16px;
+      min-height: 44px;
+      border: 1.5px solid var(--color-gray-border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; /* prevent iOS zoom on focus */
+      color: var(--color-dark);
+      background: #fff;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .form-input::placeholder { color: #adb0be; }
+    .form-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(30,95,232,.12);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    /* ── Info card ── */
+    .info-card {
+      background: var(--color-gray-light);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .info-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--color-primary-light);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px;
+    }
+
+    /* ── Success message (hidden by default) ── */
+    #success-msg {
+      display: none;
+      background: var(--color-success-light);
+      border: 1px solid var(--color-success);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: var(--color-success-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ── Error message ── */
+    #form-error {
+      display: none;
+      background: #fff0f4;
+      border: 1px solid #fc5185;
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: #c0184a;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .field-error {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.8rem;
+      color: #c0184a;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: linear-gradient(135deg, var(--color-meteorite-dark-2) 0%, var(--color-primary-dark) 100%);
+    }
+
+    /* ── Fade-up ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .6s cubic-bezier(.16,1,.3,1) both; }
+    .d1 { animation-delay: .1s; }
+    .d2 { animation-delay: .2s; }
+
+    /* Tailwind fallbacks */
+    .hidden          { display: none !important; }
+    .block           { display: block; }
+    .flex            { display: flex; }
+    .inline-flex     { display: inline-flex; }
+    .grid            { display: grid; }
+    .relative        { position: relative; }
+    .absolute        { position: absolute; }
+    .fixed           { position: fixed; }
+    .top-0           { top: 0; }
+    .left-0          { left: 0; }
+    .right-0         { right: 0; }
+    .left-1\/3       { left: 33.333%; }
+    .inset-0         { top: 0; right: 0; bottom: 0; left: 0; }
+    .z-10            { z-index: 10; }
+    .z-50            { z-index: 50; }
+    .flex-col        { flex-direction: column; }
+    .flex-shrink-0   { flex-shrink: 0; }
+    .items-center    { align-items: center; }
+    .justify-center  { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .overflow-hidden { overflow: hidden; }
+    .text-center     { text-align: center; }
+    .text-right      { text-align: right; }
+    .flex-wrap       { flex-wrap: wrap; }
+    .text-white      { color: #fff !important; }
+    .text-white\/60  { color: rgba(255,255,255,.6) !important; }
+    .text-white\/50  { color: rgba(255,255,255,.5) !important; }
+    .text-white\/40  { color: rgba(255,255,255,.4) !important; }
+    .text-white\/30  { color: rgba(255,255,255,.3) !important; }
+    .text-white\/20  { color: rgba(255,255,255,.2) !important; }
+    .text-dark       { color: #1d1e20 !important; }
+    .text-gray-soft  { color: #727586 !important; }
+    .font-black  { font-weight: 900; }
+    .font-bold   { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .text-xs   { font-size: .75rem; }
+    .text-sm   { font-size: .875rem; }
+    .text-base { font-size: 1rem; }
+    .text-lg   { font-size: 1.125rem; }
+    .tracking-wider { letter-spacing: .05em; }
+    .uppercase      { text-transform: uppercase; }
+    .w-full  { width: 100%; }
+    .h-16    { height: 4rem; }
+    .w-9     { width: 2.25rem; }
+    .h-9     { height: 2.25rem; }
+    .w-10    { width: 2.5rem; }
+    .h-10    { height: 2.5rem; }
+    .max-w-xl  { max-width: 36rem; }
+    .max-w-3xl { max-width: 48rem; }
+    .max-w-6xl { max-width: 72rem; }
+    .rounded-full { border-radius: 9999px; }
+    .border       { border-width: 1px; border-style: solid; }
+    .bg-white     { background-color: #fff !important; }
+    .opacity-10   { opacity: .1; }
+    .transition-colors { transition: color .15s, background-color .15s; }
+    .gap-3 { gap: .75rem; } .gap-4 { gap: 1rem; }
+    .gap-5 { gap: 1.25rem; } .gap-6 { gap: 1.5rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .ml-2   { margin-left: .5rem; }
+    .mt-1   { margin-top: .25rem; } .mt-3 { margin-top: .75rem; }
+    .mb-1   { margin-bottom: .25rem; } .mb-4 { margin-bottom: 1rem; }
+    .mb-5   { margin-bottom: 1.25rem; } .mb-8 { margin-bottom: 2rem; }
+    .mb-10  { margin-bottom: 2.5rem; } .mb-12 { margin-bottom: 3rem; }
+    .p-3    { padding: .75rem; } .p-4 { padding: 1rem; }
+    .px-6   { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-10  { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    .py-16  { padding-top: 4rem; padding-bottom: 4rem; }
+    .pt-28  { padding-top: 7rem; }
+    .pb-4   { padding-bottom: 1rem; }
+    .pb-16  { padding-bottom: 4rem; }
+    @media (min-width: 640px) {
+      .sm\:flex        { display: flex !important; }
+      .sm\:inline-flex { display: inline-flex !important; }
+      .sm\:hidden      { display: none !important; }
+      .sm\:flex-row    { flex-direction: row !important; }
+      .sm\:items-center{ align-items: center !important; }
+      .sm\:grid-cols-2 { display: grid !important; grid-template-columns: repeat(2,1fr) !important; }
+    }
+    @media (min-width: 768px) {
+      .md\:flex        { display: flex !important; }
+      .md\:inline-flex { display: inline-flex !important; }
+      .md\:hidden      { display: none !important; }
+      .md\:flex-row    { flex-direction: row !important; }
+      .md\:items-center{ align-items: center !important; }
+      .md\:justify-between { justify-content: space-between !important; }
+      .md\:grid-cols-2 { display: grid !important; grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 hero-gradient">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <div class="flex items-center gap-1">
+          <span class="font-black text-white tracking-tight" style="font-size:1.25rem; letter-spacing:-.02em;">
+            A<span style="color:#4d86f5;">+</span> VI
+          </span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <polygon points="10,2 18,14 2,14" fill="#4d86f5"/>
+          </svg>
+          <span class="font-black text-white tracking-tight" style="font-size:1.25rem; letter-spacing:-.02em;">RES</span>
+        </div>
+        <span class="text-white/50 text-xs font-medium hidden sm:block">et services</span>
+      </a>
+
+      <!-- Links -->
+      <ul class="hidden md:flex items-center gap-7">
+        <li><a href="index.html#vitres" class="nav-link">Vitres et gouttières</a></li>
+        <li><a href="index.html#exterieures" class="nav-link">Surfaces extérieures</a></li>
+        <li><a href="index.html#about" class="nav-link">À propos de nous</a></li>
+        <li><a href="contact.html" class="nav-link active">Contactez-nous</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <a href="tel:+14385436395" class="btn-primary hidden sm:inline-flex" style="padding:10px 22px; font-size:.8rem;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        (438) 543-6395
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" class="md:hidden text-white p-2 -mr-2" aria-label="Menu" onclick="toggleMenu()">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-5 flex-col gap-0">
+      <a href="index.html#vitres">Vitres et gouttières</a>
+      <a href="index.html#exterieures">Surfaces extérieures</a>
+      <a href="index.html#about">À propos de nous</a>
+      <a href="contact.html">Contactez-nous</a>
+      <div class="pt-4 pb-1">
+        <a href="tel:+14385436395" class="btn-primary" style="width:100%; justify-content:center;">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          (438) 543-6395
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <div class="hero-gradient pt-28 pb-16 px-6 text-center relative overflow-hidden">
+    <div class="absolute top-0 left-1/3 w-72 h-72 rounded-full opacity-10" style="background: radial-gradient(circle, #4d86f5, transparent); filter: blur(50px);"></div>
+    <div class="relative z-10 max-w-xl mx-auto">
+      <div class="badge mb-4 mx-auto fade-up" style="background:rgba(77,134,245,.2); color:#d5dfff;">Formulaire de contact</div>
+      <h1 class="font-black text-white fade-up d1" style="font-size: clamp(2.2rem,5vw,3.4rem); letter-spacing:-.03em; line-height:1.1;">
+        Contactez-nous
+      </h1>
+      <p class="text-white/60 mt-3 text-base fade-up d2">
+        Nous vous répondons rapidement pour planifier votre estimation.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <main class="py-16 px-6">
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Phone + info cards -->
+      <div class="grid sm:grid-cols-2 gap-4 mb-12">
+        <a href="tel:+14385436395" class="info-card group hover:bg-primary-light transition-colors" style="text-decoration:none;">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="#1e5fe8" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-gray-soft uppercase tracking-wider mb-1">Téléphone</div>
+            <div class="font-bold text-dark text-base">(438) 543-6395</div>
+          </div>
+        </a>
+
+        <div class="info-card">
+          <div class="info-icon">
+            <svg width="20" height="20" fill="none" stroke="#1e5fe8" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-gray-soft uppercase tracking-wider mb-1">Délai de réponse</div>
+            <div class="font-bold text-dark text-base">Sous 24 heures</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="mb-10">
+        <div class="flex items-center gap-4 mb-0">
+          <div class="flex-1 h-px" style="background:var(--color-gray-border);"></div>
+          <div class="flex-1 h-px" style="background:var(--color-gray-border);"></div>
+        </div>
+        <p class="text-sm font-semibold text-gray-soft text-center mt-3">Demande de soumission par courriel</p>
+      </div>
+
+      <!-- Success message -->
+      <div id="success-msg">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:inline-block; vertical-align:middle; margin-right:8px;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Merci ! Votre message a été envoyé. Nous vous répondrons sous 24 heures.
+      </div>
+
+      <!-- Form-level error -->
+      <div id="form-error"></div>
+
+      <!-- Contact form -->
+      <form id="contact-form" onsubmit="handleSubmit(event)">
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+
+          <!-- Nom -->
+          <div>
+            <label class="form-label" for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" class="form-input" placeholder="Votre nom" autocomplete="family-name"/>
+          </div>
+
+          <!-- Prénom -->
+          <div>
+            <label class="form-label" for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" class="form-input" placeholder="Votre prénom" autocomplete="given-name"/>
+          </div>
+        </div>
+
+        <!-- Courriel -->
+        <div class="mb-5">
+          <label class="form-label" for="courriel">
+            Addresse courriel<span class="req">*</span>
+          </label>
+          <input type="email" id="courriel" name="courriel" class="form-input" placeholder="Votre addresse courriel" autocomplete="email"/>
+          <span id="courriel-error" class="field-error"></span>
+        </div>
+
+        <!-- Téléphone -->
+        <div class="mb-5">
+          <label class="form-label" for="telephone">Numéro de téléphone</label>
+          <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="Votre numéro de téléphone" autocomplete="tel"/>
+        </div>
+
+        <!-- Adresse -->
+        <div class="mb-5">
+          <label class="form-label" for="adresse">Adresse ou code postal</label>
+          <input type="text" id="adresse" name="adresse" class="form-input" placeholder="Adresse ou code postal" autocomplete="postal-code"/>
+        </div>
+
+        <!-- Message -->
+        <div class="mb-8">
+          <label class="form-label" for="message">
+            Message / Disponibilités<span class="req">*</span>
+          </label>
+          <textarea id="message" name="message" class="form-input"
+            placeholder="Informations telles que vos disponibilités pour l'estimation, le service qui vous intéresse ou autres"></textarea>
+          <span id="message-error" class="field-error"></span>
+        </div>
+
+        <!-- Submit -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <button id="submit-btn" type="submit" class="btn-primary" style="padding:13px 40px; font-size:1rem;">
+            Envoyer
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+          </button>
+          <p class="text-gray-soft text-xs">
+            <span style="color:var(--color-primary);">*</span> Champs obligatoires. Vos informations ne seront jamais partagées.
+          </p>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="py-10 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <div class="flex items-center gap-2">
+        <span class="font-black text-white" style="font-size:1.1rem; letter-spacing:-.02em;">
+          A<span style="color:#4d86f5;">+</span> VI
+        </span>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+          <polygon points="10,2 18,14 2,14" fill="#4d86f5"/>
+        </svg>
+        <span class="font-black text-white" style="font-size:1.1rem; letter-spacing:-.02em;">RES</span>
+        <span class="text-white/30 text-xs ml-2">et services</span>
+      </div>
+
+      <ul class="flex flex-wrap justify-center gap-6">
+        <li><a href="index.html#vitres" class="text-white/40 text-xs hover:text-white/70 transition-colors">Vitres et gouttières</a></li>
+        <li><a href="index.html#exterieures" class="text-white/40 text-xs hover:text-white/70 transition-colors">Surfaces extérieures</a></li>
+        <li><a href="index.html#about" class="text-white/40 text-xs hover:text-white/70 transition-colors">À propos</a></li>
+        <li><a href="contact.html" class="text-white/70 text-xs">Contactez-nous</a></li>
+      </ul>
+
+      <div class="text-right">
+        <div class="text-white/30 text-xs">© 2025 A Plus Vitres. Tous droits réservés.</div>
+        <div class="text-white/20 text-xs mt-1">Une équipe étudiante passionnée</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    function toggleMenu() {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenu.style.display = isHidden ? '' : 'flex';
+      mobileMenu.style.flexDirection = isHidden ? '' : 'column';
+    }
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.style.display = '';
+    }
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('navbar').contains(e.target)) closeMenu();
+    });
+
+    const SEND_SVG = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>';
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact-form');
+      const btn  = document.getElementById('submit-btn');
+      const courrielInput = document.getElementById('courriel');
+      const messageInput  = document.getElementById('message');
+
+      // Reset error states
+      courrielInput.style.borderColor = '';
+      messageInput.style.borderColor  = '';
+      document.getElementById('courriel-error').textContent = '';
+      document.getElementById('message-error').textContent  = '';
+      document.getElementById('form-error').style.display   = 'none';
+
+      // Client-side validation
+      let valid = true;
+      if (!courrielInput.value.trim()) {
+        courrielInput.style.borderColor = '#fc5185';
+        document.getElementById('courriel-error').textContent = 'Veuillez entrer votre adresse courriel.';
+        valid = false;
+      }
+      if (!messageInput.value.trim()) {
+        messageInput.style.borderColor = '#fc5185';
+        document.getElementById('message-error').textContent = 'Veuillez entrer votre message.';
+        valid = false;
+      }
+      if (!valid) return;
+
+      // Loading state
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      btn.textContent = 'Envoi en cours…';
+
+      try {
+        const response = await fetch('https://formspree.io/f/mdapgrgl', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          const msg = document.getElementById('success-msg');
+          msg.style.display = 'block';
+          window.scrollTo({ top: msg.offsetTop - 100, behavior: 'smooth' });
+        } else {
+          const data = await response.json();
+          let errorMsg = 'Une erreur est survenue. Veuillez réessayer.';
+          if (data.errors) {
+            errorMsg = data.errors.map(err => err.message).join(' ');
+          }
+          const errEl = document.getElementById('form-error');
+          errEl.textContent = errorMsg;
+          errEl.style.display = 'block';
+          btn.disabled = false;
+          btn.style.opacity = '';
+          btn.innerHTML = 'Envoyer ' + SEND_SVG;
+        }
+      } catch (_) {
+        const errEl = document.getElementById('form-error');
+        errEl.textContent = 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.style.opacity = '';
+        btn.innerHTML = 'Envoyer ' + SEND_SVG;
+      }
+    }
+  </script>
+</body>
+</html>
